@@ -568,7 +568,10 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
+        if os.path.exists('/usr/libexec/mate-volume-control-applet'):
+          pid = subprocess.Popen('/usr/libexec/mate-volume-control-applet', stdout=DEVNULL, stderr=DEVNULL).pid
+        else:
+          pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
         self.remove_autostart('mate-volume-control-applet.desktop')
         self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
