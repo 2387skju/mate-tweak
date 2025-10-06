@@ -568,7 +568,27 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
+        file_positions = [
+            os.path.join('/','usr','local','libexec','mate-volume-control-applet'),
+            os.path.join('/','usr','libexec','mate-volume-control-applet'),
+            os.path.join('/','usr','lib','mate-media','mate-volume-control-applet'),
+            os.path.join('/','usr','lib','libmate-volume-control-applet.so'),
+            os.path.join('/','usr','lib','liblibmate-volume-control-applet.so'),
+            os.path.join('/','usr','lib64','mate-media','mate-volume-control-applet'),
+            os.path.join('/','usr','lib64','libmate-volume-control-applet.so'),
+            os.path.join('/','usr','lib64','liblibmate-volume-control-applet.so'),
+            os.path.join('/','usr','libexec','mate','mate-volume-control-applet'),
+            os.path.join('/','lib','mate-media','mate-volume-control-applet'),
+            os.path.join('/','libexec','mate-volume-control-applet')
+        ]
+        for file in file_positions:
+            if os.path.exists(file):
+                pid = subprocess.Popen( file, stdout=DEVNULL, stderr=DEVNULL).pid
+                break
+        else:
+            Notify.init(_('MATE Tweak'))
+            notify=Notify.Notification.new (_('Volume control maybe not started'),_('If the sound volume controller applet missing: Please logout and login again.') , 'dialog-information')
+            notify.show()
         self.remove_autostart('mate-volume-control-applet.desktop')
         self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
