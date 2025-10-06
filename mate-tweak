@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#! @PYTHON@ @PYOPTIONS@
+# -*- python -*-
+# -*- coding: utf-8 -*-
 
 # Copyright (C) 2007-2014 by Clement Lefebvre <root@linuxmint.com>
 # Copyright (C) 2015-2022 Martin Wimpress <code@ubuntu-mate.org>
@@ -60,6 +62,14 @@ from gi.repository import Notify
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 __VERSION__ = '22.10.0'
+
+try:
+    from MateTweak import config
+    datadir = config.pkgdatadir
+    version = config.VERSION
+except:
+    datadir = './data/'
+    version = __VERSION__
 
 __TILDA__ = """[Desktop Entry]
 Name=Tilda
@@ -568,7 +578,19 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
+        mate-volume-control-applet_positions = [
+            os.path.join(libexecdir, 'mate-volume-control-applet'),
+            os.path.join(libexecdir, 'mate-volume-control-applet.so'),
+            os.path.join(libexecdir, 'liblibmate-volume-control-applet.so')
+        ]
+        for p_to_start in mate-volume-control-applet_positions:
+            if os.path.exists(p_to_start1):
+                pid = subprocess.Popen( pto_start, stdout=DEVNULL, stderr=DEVNULL).pid
+                break
+        else:
+            Notify.init(_('MATE Tweak'))
+            notify=Notify.Notification.new (_('Volume control not found'),_('The sound volume-controller is maybe missing: Please log out and login again, to start it again. ') , 'dialog-information')
+            notify.show()
         self.remove_autostart('mate-volume-control-applet.desktop')
         self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
