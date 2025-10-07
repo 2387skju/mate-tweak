@@ -7,21 +7,21 @@ i18n = import('i18n')
 python = import('python')
 py3 = find_program('python3', required:true)
 
-#just copyed from mozo, delete/edit this: dependency('libmate-menu', version: '>= 1.21.0')
-#just copyed from mozo, delete/edit this: dependency('pygobject-3.0')
+#just copied from mozo, delete/edit this: dependency('libmate-menu', version: '>= 1.21.0')
+#just copied from mozo, delete/edit this: dependency('pygobject-3.0')
 
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
-#some var's are just copy from mate-control-center-master
+#some var's are just copied from mate-control-center-master
 #bindir = join_paths(prefix, get_option('bindir'))
 #sbindir = join_paths(prefix, get_option('sbindir'))
 libexecdir = join_paths(prefix, get_option('libexecdir'))
 libdir = join_paths(prefix, get_option('libdir'))
 localedir = join_paths(prefix, get_option('localedir'))
 #mandir = join_paths(prefix, get_option('mandir'))
-#sysconfdir = join_paths(prefix, get_option('sysconfdir'))
+sysconfdir = join_paths(prefix, get_option('sysconfdir'))
 
-#some var's are just copy from mate-control-center-master
+#some var's are just copied from mate-control-center-master
 #pkgdatadir = join_paths(datadir, meson.project_name())
 #pixmaps = join_paths(pkgdatadir, 'pixmaps')
 #background = join_paths(datadir, 'backgrounds')
@@ -35,17 +35,27 @@ policydir = join_paths (datadir, 'polkit-1', 'actions')
 #mime = join_paths(datadir, 'mime', 'packages')
 #gettext = meson.project_name() + '-2.0'
 
-mate_tweak_in = configuration_data()
-mate_tweak_in.set('PYTHON', py3.path())
-mate_tweak_in.set('PYOPTIONS', '-OOt')
+pymod = python.find_installation()
 
-mate_tweak = configure_file(input: 'mate-tweak',
-  output: 'mate-tweak',
-  configuration: mate_tweak_in,
+mate_tweak_in_in = configuration_data()
+mate_tweak_in_in.set('PYTHON', py3.path())
+mate_tweak_in_in.set('PYOPTIONS', '-OOt')
+#mate_tweak_in_in.set('PYTHONDIR', pymod.get_install_dir() )
+#mate_tweak_in_in.set('PACKAGE', meson.project_name() )
+
+#library(...
+#  install_dir = pythin.get_install_dir(pure: false) / 'myproject/lib'
+#)
+
+#
+mate_tweak_in = configure_file(input: 'mate-tweak.in.in',
+  output: 'mate-tweak.in',
+  configuration: mate_tweak_in_in,
   )
 
-install_data(mate_tweak,
+install_data(mate_tweak_in,
   install_mode: 'rwxr-xr-x',
+  rename: 'mate-tweak',
   install_dir: get_option('bindir')
   )
 install_data(['marco-compton','marco-glx','marco-no-composite','marco-picom','marco-xrender','marco-xr_glx_hybrid'],
@@ -56,5 +66,6 @@ install_data(['marco-compton','marco-glx','marco-no-composite','marco-picom','ma
 subdir('po')
 subdir('MateTweak')
 subdir('data')
+subdir('util')
 
 meson.add_install_script('post_install.py')

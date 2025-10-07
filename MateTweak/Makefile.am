@@ -1,7 +1,6 @@
 ## Process this file with automake to produce Makefile.in
-
 appdir = $(pythondir)/MateTweak
-app_PYTHON = __init__.py
+app_PYTHON = __init__.py MainWindow.py
 nodist_app_PYTHON = config.py
 
 config.py: config.py.in
@@ -22,6 +21,7 @@ CLEANFILES = config.py
 EXTRA_DIST = \
 	config.py.in \
 	meson.build
-	
+
+#just copied from mozo, delete/edit this:
 all-local: config.py
 

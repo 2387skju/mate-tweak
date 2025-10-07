@@ -565,7 +565,7 @@ class MateTweak:
         """
         self.kill_process('mate-volume-control-applet')
         self.remove_autostart('mate-volume-control-applet.desktop')
-        if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
+        if os.path.exists(os.path.join(config.libexecdir, 'ayatana-indicator-power','ayatana-indicator-power-service')):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'never')
             self.set_bool('org.mate.power-manager', None, 'notify-low-capacity', False)
 
@@ -578,18 +578,18 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        mate-volume-control-applet_positions = [
-            os.path.join(libexecdir, 'mate-volume-control-applet'),
-            os.path.join(libexecdir, 'mate-volume-control-applet.so'),
-            os.path.join(libexecdir, 'liblibmate-volume-control-applet.so')
+        mate_volume_control_applet_positions = [
+            os.path.join(config.libexecdir, 'mate-volume-control-applet'),
+            os.path.join(config.libexecdir, 'mate-volume-control-applet.so'),
+            os.path.join(config.libexecdir, 'liblibmate-volume-control-applet.so')
         ]
-        for p_to_start in mate-volume-control-applet_positions:
-            if os.path.exists(p_to_start1):
-                pid = subprocess.Popen( pto_start, stdout=DEVNULL, stderr=DEVNULL).pid
+        for p_to_start in mate_volume_control_applet_positions:
+            if os.path.exists(p_to_start):
+                pid = subprocess.Popen( p_to_start, stdout=DEVNULL, stderr=DEVNULL).pid
                 break
         else:
             Notify.init(_('MATE Tweak'))
-            notify=Notify.Notification.new (_('Volume control not found'),_('The sound volume-controller is maybe missing: Please log out and login again, to start it again. ') , 'dialog-information')
+            notify=Notify.Notification.new (_('Volume control not found'),_('Is the sound volume-controller is missing? Please log out and login again, to start it again. ') , 'dialog-information')
             notify.show()
         self.remove_autostart('mate-volume-control-applet.desktop')
         self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
@@ -1494,7 +1494,7 @@ class MateTweak:
             print('Development mode.')
             self.builder.add_from_file('./data/mate-tweak.ui')
         else:
-            self.builder.add_from_file('/usr/lib/mate-tweak/mate-tweak.ui')
+            self.builder.add_from_file(os.path.join(config.libdir,config.PACKAGE,'mate-tweak.ui')) #/usr/lib/mate-tweak/
 
         self.window = self.builder.get_object( "main_window" )
         self.builder.get_object("main_window").connect("destroy", Gtk.main_quit)

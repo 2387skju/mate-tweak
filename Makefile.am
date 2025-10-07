@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+appdir = $(pythondir)/MateTweak
+
 SUBDIRS = po data MateTweak
 
 CLEANFILES=
@@ -13,11 +15,12 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-icon-update \
 	CFLAGS='-Wno-deprecated-declarations'
 
-mozo: mate-tweak.in
+mate-tweak: mate-tweak.in
 	$(AM_V_GEN)sed -e s!\@PYTHON\@!@PYTHON@!	\
 	    -e s!\@PYOPTIONS\@!-OOt!			\
+	    -e s!\@appdir\@!$@appdir@!			\
 	    < $< > $@
-mozo: Makefile
+mate-tweak: Makefile
 
 EXTRA_DIST = \
 	autogen.sh \

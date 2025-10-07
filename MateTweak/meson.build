@@ -19,6 +19,7 @@ config = configure_file(
 
 matetweak_sources = [
   config,
+  'MainWindow.py',
   '__init__.py',
 ]
 

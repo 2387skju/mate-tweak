@@ -73,14 +73,34 @@ i18n.merge_file(
   install_dir : join_paths(datadir, 'applications')
   )
 
-install_data('org.mate.mate-tweak.policy',
-    install_dir: '/usr/share/polkit-1/actions/'
+config_py = configuration_data()
+config_py.set('prefix', prefix)
+config_py.set('datadir', datadir)
+config_py.set('pkgdatadir', join_paths(datadir, meson.project_name()))
+config_py.set('PACKAGE', meson.project_name())
+config_py.set('VERSION', meson.project_version())
+config_py.set('GETTEXT_PACKAGE', meson.project_name())
+config_py.set('libexecdir', libexecdir)
+config_py.set('libdir', libdir)
+config_py.set('localedir', localedir)
+config_py.set('sysconfdir',sysconfdir)
+
+
+org_mate_mate_tweak_policy = configure_file(
+  input: 'org.mate.mate-tweak.policy.in',
+  output: 'org.mate.mate-tweak.policy',
+  configuration: config_py,
+  )
+
+install_data(org_mate_mate_tweak_policy,
+    install_dir: policydir
+    #'/usr/share/polkit-1/actions/'
     #install_dir: '/app/share/polkit-1/actions/'
     #install_dir: '/etc/polkit-1/localauthority/50-local.d/'
 )
 
 install_man('mate-tweak.1')
 install_data('mate-tweak.ui',
-    install_dir: join_paths('/usr/lib/', meson.project_name())
+    install_dir: join_paths(libdir, meson.project_name())
 )
 
