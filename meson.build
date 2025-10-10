@@ -8,12 +8,13 @@ python = import('python')
 py3 = find_program('python3', required:true)
 
 #just copied from mozo, delete/edit this: dependency('libmate-menu', version: '>= 1.21.0')
-#just copied from mozo, delete/edit this: dependency('pygobject-3.0')
+#just copied from mozo, delete/edit this:
+dependency('pygobject-3.0')
 
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
 #some var's are just copied from mate-control-center-master
-#bindir = join_paths(prefix, get_option('bindir'))
+bindir = join_paths(prefix, get_option('bindir'))
 #sbindir = join_paths(prefix, get_option('sbindir'))
 libexecdir = join_paths(prefix, get_option('libexecdir'))
 libdir = join_paths(prefix, get_option('libdir'))

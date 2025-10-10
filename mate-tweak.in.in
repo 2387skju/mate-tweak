@@ -56,6 +56,9 @@ from gi.repository import Gtk
 
 gi.require_version('Notify', '0.7')
 from gi.repository import Notify
+
+# Workaround introspection bug, gnome bug 622084
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 ### this import / require_version / main() part is just copied from MainWindow and in redundant (end1/1)
 
 import MateTweak
@@ -64,10 +67,10 @@ from MateTweak.MainWindow import MateTweak
 def main():
     try:
         from MateTweak import config
-        datadir = config.pkgdatadir
+        datadir = config.pkgdatadir  #this var is nonwhere used ; just copied from mozo
         version = config.VERSION
     except:
-        datadir = './data/'
+        datadir = './data/'   #this var is nonwhere used ; just copied from mozo
         version = '22.10.0'
 #just copyed from mozo; can deleted:    app = MainWindow(datadir, version, sys.argv)
 #just copyed from mozo; can deleted:    app.run()

@@ -14,6 +14,7 @@ config.py: config.py.in
 		-e s!\@libexecdir\@!$(libexecdir)!	\
 		-e s!\@localedir\@!$(localedir)!	\
 		-e s!\@sysconfdir\@!$(sysconfdir)!	\
+		-e s!\@bindir\@!$(bindir)!	\
 		< $< > $@
 config.py: Makefile
 

@@ -1,7 +1,7 @@
 dnl -*- Mode: autoconf -*-
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.58)
-AC_INIT(mate-tweak, 22.01.1, https://mate-desktop.org)
+AC_INIT(mate-tweak, 22.01.1, ubuntu-mate/mate-tweak)
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 AC_CONFIG_SRCDIR(mate-tweak.in)
 AC_CONFIG_HEADERS([config.h])
@@ -37,7 +37,6 @@ AC_CONFIG_FILES([
         Mate-tweak/Makefile
         data/mate-tweak.desktop.in
         data/Makefile
-        data/icons/Makefile
         ])
 
 AC_OUTPUT

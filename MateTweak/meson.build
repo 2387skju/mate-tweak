@@ -9,6 +9,7 @@ config_py.set('libexecdir', libexecdir)
 config_py.set('libdir', libdir)
 config_py.set('localedir', localedir)
 config_py.set('sysconfdir',sysconfdir)
+config_py.set('bindir',bindir)
 
 
 config = configure_file(
