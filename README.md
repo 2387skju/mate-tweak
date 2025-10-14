@@ -14,5 +14,5 @@ Compile:
   cd build
   meson compile
   sudo meson install
-  
-  #sudo ninja uninstall
+Remove:
+  sudo ninja uninstall

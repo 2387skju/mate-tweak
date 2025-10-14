@@ -17,49 +17,10 @@
 #   License along with this library; if not, write to the Free Software
 #   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-### this import / require_version / main() part is just copied from MainWindow and in redundant (start1/1)
-# maybe it is a good idea to delete this parts in MainWindow now?
 import argparse
-import distro
-import errno
-import gettext
-import getpass
-import gi
-import glob
-import mmap
-import os
-import psutil
 import setproctitle
-import shutil
 import signal
-import subprocess
-import sysconfig
-import string
 import sys
-import time
-
-from subprocess import DEVNULL, PIPE
-
-from gi.repository import GLib
-
-gi.require_version('Gdk', '3.0')
-from gi.repository import Gdk
-from gi.repository import GdkPixbuf
-
-gi.require_version('GdkX11', '3.0')
-from gi.repository import GdkX11
-from gi.repository import Gio
-from gi.repository import GObject
-
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
-
-gi.require_version('Notify', '0.7')
-from gi.repository import Notify
-
-# Workaround introspection bug, gnome bug 622084
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-### this import / require_version / main() part is just copied from MainWindow and in redundant (end1/1)
 
 import MateTweak
 from MateTweak.MainWindow import MateTweak
@@ -67,16 +28,12 @@ from MateTweak.MainWindow import MateTweak
 def main():
     try:
         from MateTweak import config
-        datadir = config.pkgdatadir  #this var is nonwhere used ; just copied from mozo
+        datadir = config.pkgdatadir
         version = config.VERSION
     except:
-        datadir = './data/'   #this var is nonwhere used ; just copied from mozo
+        datadir = './data/'
         version = '22.10.0'
-#just copyed from mozo; can deleted:    app = MainWindow(datadir, version, sys.argv)
-#just copyed from mozo; can deleted:    app.run()
 
-### this import / require_version / main() part is just copied from MainWindow and in redundant (start2/2)
-# maybe it is a good idea to delete this parts in MainWindow now?
     setproctitle.setproctitle('mate-tweak')
 
     parser = argparse.ArgumentParser()
@@ -86,17 +43,16 @@ def main():
 
     # If we've been given a layout then attempt to switch layouts.
     if args.layout:
-        mt = MateTweak()
+        mt = MateTweak(datadir, version, sys.argv)
         if mt.panel_layout_exists(args.layout):
             mt.replace_panel_layout(args.layout, True)
         else:
             print("ERROR! Unable to find layout: " + args.layout)
     elif args.get_layout:
-        mt = MateTweak()
+        mt = MateTweak(datadir, version, sys.argv)
     else:
-        MateTweak()
-        Gtk.main()
-### this import / require_version / main() part is just copied from MainWindow and in redundant (end2/2)
+        mt = MateTweak(datadir, version, sys.argv)
+        mt.run()
 
 if __name__ == '__main__':
     main()

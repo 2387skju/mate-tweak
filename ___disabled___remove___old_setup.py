@@ -18,6 +18,18 @@
 # Free Software Foundation, Inc.,
 # 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+
+print("Error: This setup.py is not in use anymore. Exit.")
+sys.exit(1)
+##
+# This script is not needed anymore. We changed to build system meson.
+# Outdated parts of this script:
+# - new positon of urs/share/mate-tweak/mate-tweak.ui'
+# - config parameter must be set in config.py and .policy file
+# - some files are renamed to .in or .in.in
+##
+
+
 import os
 import sys
 

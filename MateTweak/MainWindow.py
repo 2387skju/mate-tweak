@@ -61,15 +61,14 @@ from gi.repository import Notify
 # Workaround introspection bug, gnome bug 622084
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-__VERSION__ = '22.10.0'
-
 try:
     from MateTweak import config
-    datadir = config.pkgdatadir #this var is nonwhere used ; just copied from mozo
-    version = config.VERSION
+    gettext.bindtextdomain(config.GETTEXT_PACKAGE,config.localedir)
+    gettext.textdomain(config.GETTEXT_PACKAGE)
+    GETTEXT_PACKAGE = config.GETTEXT_PACKAGE
 except:
-    datadir = './data/' #this var is nonwhere used ; just copied from mozo
-    version = __VERSION__
+    GETTEXT_PACKAGE = "mate-tweak"
+_ = gettext.gettext
 
 __TILDA__ = """[Desktop Entry]
 Name=Tilda
@@ -106,7 +105,7 @@ __MENU_TRADITIONAL_BUTTONS__ = "menu:minimize,maximize,close"
 __MENU_CONTEMPORARY_BUTTONS__ = "close,minimize,maximize:menu"
 
 # i18n
-gettext.install(config.GETTEXT_PACKAGE, config.localedir)
+gettext.install(GETTEXT_PACKAGE, config.localedir)
 
 class SidePage:
     def __init__(self, notebook_index, name, icon):
@@ -1355,7 +1354,6 @@ class MateTweak:
         # Returns user input as a string or None
         title = _('Panel layout name')
         text = _('Enter the name for your panel layout.')
-
         dialog = Gtk.Dialog(title, None, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_OK, Gtk.ResponseType.OK))
@@ -1475,7 +1473,9 @@ class MateTweak:
         Gtk.main_quit()
 
     ''' Create the UI '''
-    def __init__(self):
+    def __init__(self, datadir, version, argv):
+        self.file_path = datadir
+        self.version = version
         # Check for glx, panel, dock and wm features
         self.multiarch = sysconfig.get_config_var('MULTIARCH')
         self.check_glx_features()
@@ -1492,9 +1492,7 @@ class MateTweak:
         self.builder = Gtk.Builder()
         if os.path.exists('./data/mate-tweak.ui'):
             print('Development mode.')
-            self.builder.add_from_file('./data/mate-tweak.ui')
-        else:
-            self.builder.add_from_file(os.path.join(config.libdir, config.PACKAGE, 'mate-tweak.ui')) #/usr/lib/mate-tweak/
+        self.builder.add_from_file(os.path.join(self.file_path, 'mate-tweak.ui'))
 
         self.window = self.builder.get_object( "main_window" )
         self.builder.get_object("main_window").connect("destroy", Gtk.main_quit)
@@ -1744,23 +1742,5 @@ class MateTweak:
         self.builder.get_object("close_tweak").connect("clicked", self.close_tweak)
         self.builder.get_object("main_window").show()
 
-if __name__ == "__main__":
-    setproctitle.setproctitle(config.PACKAGE)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--layout', help="Switch to a panel layout")
-    parser.add_argument('--get-layout', action='store_true', help="Get the current panel layout")
-    args = parser.parse_args()
-
-    # If we've been given a layout then attempt to switch layouts.
-    if args.layout:
-        mt = MateTweak()
-        if mt.panel_layout_exists(args.layout):
-            mt.replace_panel_layout(args.layout, True)
-        else:
-            print("ERROR! Unable to find layout: " + args.layout)
-    elif args.get_layout:
-        mt = MateTweak()
-    else:
-        MateTweak()
+    def run(self):
         Gtk.main()

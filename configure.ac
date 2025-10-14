@@ -22,6 +22,7 @@ AM_GNU_GETTEXT([external])
 
 AM_PATH_PYTHON(3.5)
 
+#not needed? (just copied from "mozo" mate software)
 PKG_CHECK_MODULES(MATE-TWEAK, pygobject-3.0)
 
 AC_ARG_ENABLE(icon-update, AS_HELP_STRING([--disable-icon-update],
