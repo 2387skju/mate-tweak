@@ -94,9 +94,6 @@ org_mate_mate_tweak_policy = configure_file(
 
 install_data(org_mate_mate_tweak_policy,
     install_dir: policydir
-    #'/usr/share/polkit-1/actions/'
-    #install_dir: '/app/share/polkit-1/actions/'
-    #install_dir: '/etc/polkit-1/localauthority/50-local.d/'
 )
 
 install_man('mate-tweak.1')
