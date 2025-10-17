@@ -1151,7 +1151,7 @@ class MateTweak:
             os.path.exists(os.path.join(config.datadir, 'mate-panel', 'applets', 'org.vala-panel.appmenu.mate-panel-applet')):
             self.appmenu_applet_available = True
 
-        if os.path.exists(os.path.join(config.libdir, 'mate-maximus')) and \
+        if os.path.exists(os.path.join(config.bindir, 'mate-maximus')) and \
            os.path.exists(os.path.join(config.libdir, 'mate-netbook', 'mate-window-picker-applet')):
             self.maximus_available = True
 
@@ -1473,8 +1473,8 @@ class MateTweak:
         Gtk.main_quit()
 
     ''' Create the UI '''
-    def __init__(self, datadir, version, argv):
-        self.file_path = datadir
+    def __init__(self, file_path, version, argv):
+        self.file_path = file_path
         self.version = version
         # Check for glx, panel, dock and wm features
         self.multiarch = sysconfig.get_config_var('MULTIARCH')
@@ -1492,7 +1492,9 @@ class MateTweak:
         self.builder = Gtk.Builder()
         if os.path.exists('./data/mate-tweak.ui'):
             print('Development mode.')
-        self.builder.add_from_file(os.path.join(self.file_path, 'mate-tweak.ui'))
+            self.builder.add_from_file('./data/mate-tweak.ui')
+        else:
+            self.builder.add_from_file(os.path.join(self.file_path, 'mate-tweak.ui'))
 
         self.window = self.builder.get_object( "main_window" )
         self.builder.get_object("main_window").connect("destroy", Gtk.main_quit)

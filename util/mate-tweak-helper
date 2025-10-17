@@ -28,10 +28,10 @@ from subprocess import PIPE
 
 try:
     from MateTweak import config
-    datadir = config.pkgdatadir #this var is nonwhere used ; just copied from mozo
+    file_path = config.pkgdatadir
     version = config.VERSION
 except:
-    datadir = './data/' #this var is nonwhere used ; just copied from mozo
+    file_path = './data/'
     version = __VERSION__
 
 def autostop(filename):

@@ -28,10 +28,10 @@ from MateTweak.MainWindow import MateTweak
 def main():
     try:
         from MateTweak import config
-        datadir = config.pkgdatadir
+        file_path = config.pkgdatadir
         version = config.VERSION
     except:
-        datadir = './data/'
+        file_path = './data/'
         version = '22.10.0'
 
     setproctitle.setproctitle('mate-tweak')
@@ -43,15 +43,15 @@ def main():
 
     # If we've been given a layout then attempt to switch layouts.
     if args.layout:
-        mt = MateTweak(datadir, version, sys.argv)
+        mt = MateTweak(file_path, version, sys.argv)
         if mt.panel_layout_exists(args.layout):
             mt.replace_panel_layout(args.layout, True)
         else:
             print("ERROR! Unable to find layout: " + args.layout)
     elif args.get_layout:
-        mt = MateTweak(datadir, version, sys.argv)
+        mt = MateTweak(file_path, version, sys.argv)
     else:
-        mt = MateTweak(datadir, version, sys.argv)
+        mt = MateTweak(file_path, version, sys.argv)
         mt.run()
 
 if __name__ == '__main__':
