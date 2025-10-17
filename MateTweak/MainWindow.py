@@ -577,19 +577,9 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        mate_volume_control_applet_positions = [
-            os.path.join(config.libexecdir, 'mate-volume-control-applet'),
-            os.path.join(config.libexecdir, 'mate-volume-control-applet.so'),
-            os.path.join(config.libexecdir, 'liblibmate-volume-control-applet.so')
-        ]
-        for p_to_start in mate_volume_control_applet_positions:
-            if os.path.exists(p_to_start):
-                pid = subprocess.Popen( p_to_start, stdout=DEVNULL, stderr=DEVNULL).pid
-                break
-        else:
-            Notify.init(_('MATE Tweak'))
-            notify=Notify.Notification.new (_('Volume control not found'),_('Is the sound volume-controller is missing? Please log out and login again, to start it again. ') , 'dialog-information')
-            notify.show()
+        p_to_start = os.path.join(config.libexecdir, 'mate-volume-control-applet')
+        if os.path.exists(p_to_start):
+            pid = subprocess.Popen( p_to_start, stdout=DEVNULL, stderr=DEVNULL).pid
         self.remove_autostart('mate-volume-control-applet.desktop')
         self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
         if os.path.exists(os.path.join(config.libexecdir, 'ayatana-indicator-power', 'ayatana-indicator-power-service')):
