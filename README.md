@@ -9,10 +9,10 @@ MATE Tweak needs translators!
   * https://www.transifex.com/projects/p/MATE/resource/mate-tweak/
 
 Compile:
-  rm build -r
-  meson build --libdir=/usr/lib/ --prefix=/usr/ --sysconfdir=/etc
-  cd build
-  meson compile
-  sudo meson install
+-  meson build --libdir=/usr/lib/ --prefix=/usr/ --sysconfdir=/etc
+-  cd build
+-  meson compile
+-  sudo meson install
+
 Remove:
-  sudo ninja uninstall
+-  sudo ninja uninstall
