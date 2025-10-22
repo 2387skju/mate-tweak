@@ -62,6 +62,32 @@ msgstr ""
 "В момента използвате непознат и неподдържан мениджър на прозорците. Затова "
 "не можем да гарантираме, че промените, направени тук, ще имат смисъл."
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"To restore: First restore these files, than load the saved panel "
+"(other way around: re-login)."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "Работен плот"
