@@ -66,28 +66,32 @@ msgstr ""
 
 #: ../mate-tweak:
 msgid "Custom launcher not saved"
-msgstr ""
+msgstr "Angepasste Starter nicht gespeichert"
 
 #: ../mate-tweak:
 msgid "Your custom or modified launcher in panel will be not saved:"
 msgstr ""
+"Ihre benutzerdefinierten oder angepassten Anwendungsstarter im Panel werden "
+"nicht gespeichert:"
 
 #: ../mate-tweak:
 msgid "If these launcher are important for you"
-msgstr ""
+msgstr "Wenn Ihnen diese Starter wichtig sind"
 
 #: ../mate-tweak:
 msgid "Do a manual backup of"
-msgstr ""
+msgstr "Machen Sie selber eine Datensicherung "
 
 #: ../mate-tweak:
 msgid "these files"
-msgstr ""
+msgstr "dieser Dateien"
 
 #: ../mate-tweak:
 msgid ""
 "Restore: Before reloading the saved panel again, first restore these files."
 msgstr ""
+"Wiederherstellung: Noch vor dem laden eines gespeichertes Panel, sollten Sie die "
+" Dateien wiederherstellen."
 
 #: ../mate-tweak:1529
 msgid "Desktop"
