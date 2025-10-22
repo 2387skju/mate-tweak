@@ -80,7 +80,8 @@ msgstr ""
 
 #: ../mate-tweak:
 msgid ""
-"Restore: Before reloading the saved panel again, first restore these files."
+"To restore: First restore these files, than load the saved panel "
+"(other way around: re-login)."
 msgstr ""
 
 #: ../mate-tweak:1529

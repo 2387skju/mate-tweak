@@ -1432,7 +1432,7 @@ class MateTweak:
              Gtk.STOCK_OK, Gtk.ResponseType.OK))
         dialog.set_default_size(450, 200)
         label = Gtk.Label(labelText)
-        label2 = Gtk.Label(_('If these launcher are important for you')+':\n '+_('Do a manual backup of')+' <a href="file://' + path + '">'+_('these files')+'</a>. '+_('Restore: Before reloading the saved panel again, first restore these files.'))
+        label2 = Gtk.Label(_('If these launcher are important for you')+':\n '+_('Do a manual backup of')+' <a href="file://' + path + '">'+_('these files')+'</a>. '+_('To restore: First restore these files, than load the saved panel (other way around: re-login).'))
         label2.set_use_markup(True)
         scrolled_win = Gtk.ScrolledWindow()
         textarea = Gtk.Label(text.strip())

@@ -88,10 +88,11 @@ msgstr "dieser Dateien"
 
 #: ../mate-tweak:
 msgid ""
-"Restore: Before reloading the saved panel again, first restore these files."
+"To restore: First restore these files, than load the saved panel "
+"(other way around: re-login)."
 msgstr ""
-"Wiederherstellung: Noch vor dem laden eines gespeichertes Panel, sollten Sie die "
-" Dateien wiederherstellen."
+"Wiederherstellung: Erst diese Dateien wiederherstellen, dann das gespeicherte Panel laden "
+" (anders-herum: erneut einloggen)"
 
 #: ../mate-tweak:1529
 msgid "Desktop"
