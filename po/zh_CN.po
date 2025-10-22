@@ -27,6 +27,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: mate-tweak:
+msgid "Window Manager Replaced"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your window manager has been replaced with "
+msgstr ""
+
+#: mate-tweak:
+msgid "Change the layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid "Changing the layout will completely replace and reset the current "
+"configuration!"
+msgstr ""
+
+#: mate-tweak:
+msgid ""
+"Are you sure you want to replace this layout and potentially lose any "
+"customizations you might have made?"
+msgstr ""
+
 #: ../mate-tweak:1207
 msgid "Right"
 msgstr "右"
@@ -66,6 +89,56 @@ msgid ""
 msgstr ""
 "你现在正在使用一个未知的且不受支持的窗口管理器。因此我们不能保证你在这里作出"
 "的修改可以生效。"
+
+#: mate-tweak:
+msgid "Custom: "
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel layout name"
+msgstr ""
+
+#: mate-tweak:
+msgid "Enter the name for your panel layout."
+msgstr ""
+
+#: mate-tweak:
+msgid "Delete this custom layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid ""
+"Deleting this custom layout will also return your layout to the system "
+"default."
+msgstr ""
+
+#: mate-tweak:
+msgid "Are you sure you want to permanently delete this custom layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel Layout Deleted"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your panel layout has been deleted: "
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel Layout Saved"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your panel layout has been saved as "
+msgstr ""
+
+#: mate-tweak:
+msgid "Compiz Reset"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your Compiz configuration has been reset to factory defaults."
+msgstr ""
 
 #: ../mate-tweak:1529
 msgid "Desktop"
@@ -260,6 +333,10 @@ msgid ""
 "Double the size of all windows, panels, widgets, fonts, etc. for HiDPI "
 "displays."
 msgstr "设置所有窗口、面板、控件、字体等为双倍尺寸，用于HiDPI显示。"
+
+#: mate-tweak:
+msgid "Logout or restart for the settings to take effect."
+msgstr ""
 
 #: ../mate-tweak:1641
 msgid "Open Font preferences"

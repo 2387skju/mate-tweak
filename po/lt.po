@@ -20,6 +20,29 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: mate-tweak:
+msgid "Window Manager Replaced"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your window manager has been replaced with "
+msgstr ""
+
+#: mate-tweak:
+msgid "Change the layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid "Changing the layout will completely replace and reset the current "
+"configuration!"
+msgstr ""
+
+#: mate-tweak:
+msgid ""
+"Are you sure you want to replace this layout and potentially lose any "
+"customizations you might have made?"
+msgstr ""
+
 #: ../mate-tweak:1207
 msgid "Right"
 msgstr "Dešinėje"
@@ -60,6 +83,56 @@ msgid ""
 msgstr ""
 "Jūs šiuo metu naudojate nežinomą ir nepalaikomą langų tvarkytuvę. Dėl to, "
 "mes negalime garantuoti, kad čia atlikti pakeitimai ką nors įtakos."
+
+#: mate-tweak:
+msgid "Custom: "
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel layout name"
+msgstr ""
+
+#: mate-tweak:
+msgid "Enter the name for your panel layout."
+msgstr ""
+
+#: mate-tweak:
+msgid "Delete this custom layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid ""
+"Deleting this custom layout will also return your layout to the system "
+"default."
+msgstr ""
+
+#: mate-tweak:
+msgid "Are you sure you want to permanently delete this custom layout?"
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel Layout Deleted"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your panel layout has been deleted: "
+msgstr ""
+
+#: mate-tweak:
+msgid "Panel Layout Saved"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your panel layout has been saved as "
+msgstr ""
+
+#: mate-tweak:
+msgid "Compiz Reset"
+msgstr ""
+
+#: mate-tweak:
+msgid "Your Compiz configuration has been reset to factory defaults."
+msgstr ""
 
 #: ../mate-tweak:1529
 msgid "Desktop"
@@ -262,6 +335,10 @@ msgid ""
 msgstr ""
 "HiDPI ekranams dukart didinti visų langų, skydelių, valdiklių, šriftų ir t."
 "t. dydį."
+
+#: mate-tweak:
+msgid "Logout or restart for the settings to take effect."
+msgstr ""
 
 #: ../mate-tweak:1641
 msgid "Open Font preferences"
