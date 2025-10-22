@@ -65,6 +65,31 @@ msgid ""
 "cannot guarantee that changes made here will be effective."
 msgstr "U gebruikt momenteel een onbekende en niet-ondersteunde vensterbeheerder. Daarom kunnen we niet garanderen dat wijzigingen die hier gemaakt worden ook effect hebben."
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"Restore: Before reloading the saved panel again, first restore these files."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "Bureaublad"

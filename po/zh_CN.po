@@ -67,6 +67,31 @@ msgstr ""
 "你现在正在使用一个未知的且不受支持的窗口管理器。因此我们不能保证你在这里作出"
 "的修改可以生效。"
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"Restore: Before reloading the saved panel again, first restore these files."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "桌面"

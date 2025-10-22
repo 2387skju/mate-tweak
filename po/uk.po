@@ -61,6 +61,31 @@ msgid ""
 "cannot guarantee that changes made here will be effective."
 msgstr "Ви використовуєте невідомий і непідтримуваний упорядник вікон. Немає запорук, що зміни, зроблені тут, будуть мати ефект."
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"Restore: Before reloading the saved panel again, first restore these files."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "Стільниця"

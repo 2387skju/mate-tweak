@@ -60,6 +60,31 @@ msgid ""
 "cannot guarantee that changes made here will be effective."
 msgstr "지금 사용하시는 창 관리자는 알려지지 않았거나 지원되지 않는 것입니다. 그러므로 우리는 적용하신 변경 사항에 대한 책임을 지지 않습니다."
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"Restore: Before reloading the saved panel again, first restore these files."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "바탕화면"

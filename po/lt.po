@@ -61,6 +61,31 @@ msgstr ""
 "Jūs šiuo metu naudojate nežinomą ir nepalaikomą langų tvarkytuvę. Dėl to, "
 "mes negalime garantuoti, kad čia atlikti pakeitimai ką nors įtakos."
 
+#: ../mate-tweak:
+msgid "Custom launcher not saved"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Your custom or modified launcher in panel will be not saved:"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "If these launcher are important for you"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Do a manual backup of"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "these files"
+msgstr ""
+
+#: ../mate-tweak:
+msgid ""
+"Restore: Before reloading the saved panel again, first restore these files."
+msgstr ""
+
 #: ../mate-tweak:1529
 msgid "Desktop"
 msgstr "Darbalaukis"
