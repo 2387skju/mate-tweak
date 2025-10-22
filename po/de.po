@@ -8,14 +8,14 @@
 # Robert Orzanna <robert@orzanna.de>, 2017
 # Tobias Bannert <tobannert@gmail.com>, 2015-2018
 # Vinzenz Vietzke <vinz@vinzv.de>, 2018
+# Stefan Kadow <git17@ska67.de>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 22:22+0000\n"
-"PO-Revision-Date: 2019-03-23 00:52+0000\n"
-"Last-Translator: Stefan Kadow <git17@ska67.de>\n"
-"Language-Team: German (http://www.transifex.com/mate/MATE/language/de/)\n"
+"POT-Creation-Date: 2025-10-22 14:40+0200\n"
+"PO-Revision-Date: 2025-10-22 15:40+0200\n"
+"Last-Translator: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,26 +24,28 @@ msgstr ""
 
 #: mate-tweak:
 msgid "Window Manager Replaced"
-msgstr ""
+msgstr "Window Manager ersetzt"
 
 #: mate-tweak:
 msgid "Your window manager has been replaced with "
-msgstr ""
+msgstr "Ihr Window Manager wurde ersetzt mit "
 
 #: mate-tweak:
 msgid "Change the layout?"
-msgstr ""
+msgstr "Wechsel das Layout?"
 
 #: mate-tweak:
 msgid "Changing the layout will completely replace and reset the current "
 "configuration!"
-msgstr ""
+msgstr "Wechseln des Layouts wird es vollständig ersetzen und ihre "
+"aktuellen Anpassungen zurücksetzen!"
 
 #: mate-tweak:
 msgid ""
 "Are you sure you want to replace this layout and potentially lose any "
 "customizations you might have made?"
-msgstr ""
+msgstr "Sind Sie sich, das sie Ihr layout ersetzen wollen und "
+"potentiell ihre ganzen durchgeführten Anpassungen verlieren?"
 
 #: ../mate-tweak:1207
 msgid "Right"
@@ -89,53 +91,54 @@ msgstr ""
 
 #: mate-tweak:
 msgid "Custom: "
-msgstr ""
+msgstr "Benutzerdefiniert: "
 
 #: mate-tweak:
 msgid "Panel layout name"
-msgstr ""
+msgstr "Panel Layout name"
 
 #: mate-tweak:
 msgid "Enter the name for your panel layout."
-msgstr ""
+msgstr "Geben Sie ihren Panel Layout einen Namen."
 
 #: mate-tweak:
 msgid "Delete this custom layout?"
-msgstr ""
+msgstr "Löschen dieses Benutzerdefinierten Layouts?"
 
 #: mate-tweak:
 msgid ""
 "Deleting this custom layout will also return your layout to the system "
 "default."
-msgstr ""
+msgstr "Nach dem löschen dieses Benutzerdefinierten Layouts, wird ihr System"
+"auf das standard Layout zurücksetzen"
 
 #: mate-tweak:
 msgid "Are you sure you want to permanently delete this custom layout?"
-msgstr ""
+msgstr "Sind Sie sicher, dieses Benutzerdefinierte Layout permanent zu löschen?"
 
 #: mate-tweak:
 msgid "Panel Layout Deleted"
-msgstr ""
+msgstr "Panel Layout gelöscht"
 
 #: mate-tweak:
 msgid "Your panel layout has been deleted: "
-msgstr ""
+msgstr "Ihr Panel Layout wurde gelöscht: "
 
 #: mate-tweak:
 msgid "Panel Layout Saved"
-msgstr ""
+msgstr "Panel Layout gespeichert"
 
 #: mate-tweak:
 msgid "Your panel layout has been saved as "
-msgstr ""
+msgstr "Ihr Panel Layout wurde gespeichert als "
 
 #: mate-tweak:
 msgid "Compiz Reset"
-msgstr ""
+msgstr "Compiz Zurücksetzen"
 
 #: mate-tweak:
 msgid "Your Compiz configuration has been reset to factory defaults."
-msgstr ""
+msgstr "Ihre Compiz Konfiguration wurde auf Auslieferungs-Zustand zurückgesetzt."
 
 #: ../mate-tweak:1529
 msgid "Desktop"
@@ -345,7 +348,7 @@ msgstr ""
 "Bildschirme verdoppeln."
 
 #: mate-tweak:
-msgid "Logout or restart for the settings to take effect."
+msgid "Abmelden oder Neustarten damit diese Einstellung wirksam wird."
 msgstr ""
 
 #: ../mate-tweak:1641
