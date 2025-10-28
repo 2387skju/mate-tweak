@@ -309,8 +309,9 @@ class MateTweak:
             os.remove(autostart_file)
 
         # Make sure any system desktop files are also removed
-        mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
-        subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+        if os.path.exists(os.path.join('/', 'etc', 'xdg', 'autostart',filename)):
+            mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
+            subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
@@ -391,6 +392,12 @@ class MateTweak:
                 self.set_dconf_value('/org/compiz/profiles/mate/plugins/core/hsize', str(num_workspaces))
                 self.set_dconf_value('/org/compiz/profiles/mate/plugins/core/vsize', '1')
             print('Set ' + str(num_workspaces) + ' workspaces for ' + new_wm)
+
+        # Prevent autostart picom
+        # Situations: in case ~/.config/picom.conf ; or in older versions (picom < v12 , before commit: May 23 05:53:43 2024)
+        if new_wm == 'marco-no-composite' or new_wm == 'compiz':
+            self.remove_autostart('picom.desktop') # Remove autostart picom
+            self.kill_process('picom') #maybe old autostart progress
 
         # Make sure Compiz use the same theme as Marco to
         # prevent theme/xcursor changes when switching themes.
