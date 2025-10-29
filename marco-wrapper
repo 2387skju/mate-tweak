@@ -26,6 +26,11 @@ case ${BACKEND} in
     ;;
 esac
 
+APPEND_PARAM=''
+if [ "${BACKEND}" == "xr_glx_hybrid" ]; then
+    APPEND_PARAM="-legacy-backends"
+fi
+
 VSYNC="--vsync"
 # Disable vsync if the NVIDIA compositor is enabled.
 if command -v nvidia-settings &>/dev/null; then
@@ -43,12 +48,12 @@ if [ -n "${COMP}" ]; then
     if [ -f "${HOME}/.config/${WM}-${COMP}.conf" ]; then
         ${COMP} \
             --daemon \
-            --config "${HOME}/.config/${WM}-${COMP}.conf"
+            --config "${HOME}/.config/${WM}-${COMP}.conf" ${APPEND_PARAM}
     else
         ${COMP} \
             --daemon \
             --config /dev/null \
-            --backend ${BACKEND} ${VSYNC} \
+            --backend ${BACKEND} ${VSYNC} ${APPEND_PARAM}\
             --detect-rounded-corners \
             --detect-client-leader \
             --detect-transient \

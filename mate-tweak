@@ -1175,7 +1175,7 @@ class MateTweak:
             if self.find_on_path('marco-glx'):
                 wms.append([_("Marco (picom: GLX)"), 'marco-glx'])
             if self.find_on_path('marco-xr_glx_hybrid'):
-                wms.append([_("Marco (picom: Hybrid)"), 'marco-xr_glx_hybrid'])
+                wms.append([_("Marco (picom: Hybrid)")+" - "+ _("deprecated"), 'marco-xr_glx_hybrid'])
         if self.compiz_capable:
             wms.append([_("Compiz (Advanced GPU accelerated desktop effects)"), 'compiz'])
 
