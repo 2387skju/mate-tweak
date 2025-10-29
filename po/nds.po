@@ -48,6 +48,10 @@ msgstr "Marco (Tosamensetter passt an)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Tosamensetter: Compton GPU)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Kumplizeerte Schrievdisk-Effekten mit GPU-anlopen)"

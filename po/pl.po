@@ -60,6 +60,10 @@ msgstr "Marco (adaptacyjne składanie)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (składanie Compton za pomocą karty graficznej)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (zaawansowane efekty pulpitu wspomagane kartą graficzną)"

@@ -51,6 +51,10 @@ msgstr "Marco (prilagodljivi skladalnik)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (skladalnik GPE Compton)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Napredne nastavitve GPU pospešenih učinkov)"

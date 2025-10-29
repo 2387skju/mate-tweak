@@ -50,6 +50,10 @@ msgstr "Marco (без обединител)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (обединител на графичен процесор „Compton“)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (разширени ефекти, с използване на графичната карта)"

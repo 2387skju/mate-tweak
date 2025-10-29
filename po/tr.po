@@ -53,6 +53,10 @@ msgstr "Marco (Uyarlamalı kurgulama eklentisi)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Compton GPU kurgulama eklentisi)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Gelişmiş, GPU ile hızlandırılmış masaüstü görgeleri)"

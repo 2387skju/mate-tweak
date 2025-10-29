@@ -53,6 +53,10 @@ msgstr "Marco (Fleksibel vindusbehandling)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Compton GPU-vindusbehandlingseffekter)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (avanserte GPU-aksellererte skrivebordseffekter)"

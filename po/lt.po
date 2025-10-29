@@ -49,6 +49,10 @@ msgstr "Marco (Be tvarkytojo)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Compton GPU tvarkytojas)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Išplėstiniai GPU paspartinami darbalaukio efektai)"

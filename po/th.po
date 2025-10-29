@@ -51,6 +51,10 @@ msgstr "แมโคร (ไม่ใช้คอมโพสิเตอร์)
 msgid "Marco (Compton GPU compositor)"
 msgstr ""
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (ลูกเล่นพื้นโต๊ะขั้นสูงที่เร่ง GPU)"

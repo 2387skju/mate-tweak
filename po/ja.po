@@ -55,6 +55,10 @@ msgstr "Marco (コンポジット有効)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Compton (GPUコンポジット)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (先進的なGPUコンポジット)"

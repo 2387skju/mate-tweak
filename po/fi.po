@@ -49,6 +49,10 @@ msgstr "Marco (mukautuva ikkunointiohjelma)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Compton Näytönohjain-komposiittori)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Edistyneet GPU-kiihdytetyt työpöytätehosteet)"

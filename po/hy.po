@@ -49,6 +49,10 @@ msgstr "Marco (Ոչ մի գրաշար)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco (Compton GPU գրաշար)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz (Ընդլայնված GPU արագացված աշխատասեղանի էֆեկտներ)"

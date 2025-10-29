@@ -51,6 +51,10 @@ msgstr "Марко (без састављача)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Марко (Комптон графички састављач)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Компиз (напредни ефекти радне површи убрзани графичким процесором)"

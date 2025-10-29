@@ -50,6 +50,10 @@ msgstr "마로코 (반응형 컴포지터)"
 msgid "Marco (Compton GPU compositor)"
 msgstr "마르코 (컴프톤 GPU 컴포지터)"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "컴피즈 (GPU 가속 고급 데스크톱 효과)"

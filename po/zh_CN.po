@@ -55,6 +55,10 @@ msgstr "Marco（自适应混成器）"
 msgid "Marco (Compton GPU compositor)"
 msgstr "Marco（Compton GPU 混成器）"
 
+#: ../mate-tweak:
+msgid "deprecated"
+msgstr ""
+
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
 msgstr "Compiz（高级GPU加速的桌面效果）"
