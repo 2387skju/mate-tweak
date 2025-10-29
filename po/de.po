@@ -52,7 +52,7 @@ msgstr "Marco (Compton-GPU-Komposit)"
 
 #: ../mate-tweak:
 msgid "deprecated"
-msgstr ""
+msgstr "veraltet"
 
 #: ../mate-tweak:1224
 msgid "Compiz (Advanced GPU accelerated desktop effects)"
