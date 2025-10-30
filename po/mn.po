@@ -261,26 +261,6 @@ msgstr ""
 msgid "Select a window scaling factor."
 msgstr ""
 
-#: ../mate-tweak:
-msgid "Open the Picom-Conf Config file to edit manuell"
-msgstr ""
-
-#: ../mate-tweak:
-msgid "Restart Picom"
-msgstr ""
-
-#: ../mate-tweak:
-msgid "Restart and reload the config-file of picom"
-msgstr ""
-
-#: ../mate-tweak:
-msgid "Reset to default preset"
-msgstr ""
-
-#: ../mate-tweak:
-msgid "Reset the current Picom-Conf configuration to the default presets, which were shipped by Mate-Tweak"
-msgstr ""
-
 #: ../mate-tweak:1630
 msgid "Auto-detect"
 msgstr ""
