@@ -71,11 +71,11 @@ Categories=GNOME;GTK;System;Utility;TerminalEmulator;
 X-GNOME-Autostart-enabled=true
 X-MATE-Autostart-enabled=true"""
 
-__APPLET_SOUND__ = """[Desktop Entry]
+__APPLET_SOUND_ICON__ = """[Desktop Entry]
 Name=Volume Control
 Comment=Show desktop volume control
 Icon=multimedia-volume-control
-Exec=mate-volume-control-applet
+Exec=mate-volume-control-status-icon
 Terminal=false
 Type=Application
 Categories=AudioVideo;Mixer;Settings;HardwareSettings;
@@ -295,7 +295,8 @@ class MateTweak:
 
     def create_autostart(self, filename, content):
         # Create a local autostart only if it is missing from the system path.
-        if not os.path.exists(os.path.join('/','usr','share','mate','autostart',filename)):
+        if not os.path.exists(os.path.join('/','usr','share','mate','autostart',filename)) and \
+           not os.path.exists(os.path.join('/','etc','xdg','autostart',filename)):
             config_dir = GLib.get_user_config_dir()
             self.mkdir_p(os.path.join(config_dir, 'autostart/'))
             if not os.path.exists(os.path.join(config_dir, 'autostart',filename)):
@@ -309,8 +310,9 @@ class MateTweak:
             os.remove(autostart_file)
 
         # Make sure any system desktop files are also removed
-        mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
-        subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+        if os.path.exists(os.path.join('/', 'etc', 'xdg', 'autostart',filename)):
+            mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
+            subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
@@ -553,12 +555,16 @@ class MateTweak:
         When indicators are enabled some MATE applets need disabling
         or hiding.
         """
+        self.kill_process('mate-volume-control-status-icon')
         self.kill_process('mate-volume-control-applet')
-        self.remove_autostart('mate-volume-control-applet.desktop')
+        self.remove_autostart('mate-volume-control-status-icon.desktop')
+
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'never')
             self.set_bool('org.mate.power-manager', None, 'notify-low-capacity', False)
 
+        # Remove the outdated part
+        self.remove_autostart('mate-volume-control-applet.desktop')
         # Remove the incorrectly named autostart file caused by an earlier bug.
         # Note the double .desktop suffix.
         self.remove_autostart('mate-volume-control-applet.desktop.desktop')
@@ -568,13 +574,16 @@ class MateTweak:
         When indicators are disabled some MATE applets need enabling
         or showing.
         """
-        pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
-        self.remove_autostart('mate-volume-control-applet.desktop')
-        self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
+        if self.find_on_path('mate-volume-control-status-icon'):
+           pid = subprocess.Popen(['mate-volume-control-status-icon'], stdout=DEVNULL, stderr=DEVNULL).pid
+        self.create_autostart('mate-volume-control-status-icon.desktop', __APPLET_SOUND_ICON__)
+
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'present')
             self.set_bool('org.mate.power-manager', None, 'notify-low-capacity', True)
 
+        # Remove the outdated part
+        self.remove_autostart('mate-volume-control-applet.desktop')
         # Remove the incorrectly named autostart file case by an earlier bug.
         # Note the double .desktop suffix.
         self.remove_autostart('mate-volume-control-applet.desktop.desktop')
