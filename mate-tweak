@@ -302,6 +302,18 @@ class MateTweak:
                 with open(os.path.join(config_dir, 'autostart', filename),'w') as autostart:
                     autostart.write(content)
 
+    def enable_autostart(self, filename):
+        # enable autostart by remove local .desktop with disabled state (e.g. hidden)
+        config_dir = GLib.get_user_config_dir()
+        autostart_file = os.path.join(config_dir, 'autostart', filename)
+        if os.path.exists(autostart_file) and not self.is_desktopfile_non_active(autostart_file):
+            return
+        autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if os.path.exists(autostart_file_systemwide):
+            if self.is_desktopfile_non_active(autostart_file_systemwide):
+                print("Error: Autostart not possible: Source-file "+autostart_file_systemwide+" not active.")
+                return
+
     def remove_autostart(self, filename):
         config_dir = GLib.get_user_config_dir()
         autostart_file = os.path.join(config_dir, 'autostart', filename)
@@ -311,6 +323,43 @@ class MateTweak:
         # Make sure any system desktop files are also removed
         mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
         subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+
+    def disable_autostart(self, filename):
+        # disable autostart by local .desktop with disabled state (e.g. hidden)
+        config_dir = GLib.get_user_config_dir()
+        autostart_file = os.path.join(config_dir, 'autostart', filename)
+        if os.path.exists(autostart_file):
+            if self.is_desktopfile_non_active(autostart_file):
+                return
+            else:
+                os.remove(autostart_file)
+        autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if os.path.exists(autostart_file_systemwide) and not self.is_desktopfile_non_active(autostart_file_systemwide):
+            shutil.copyfile(autostart_file_systemwide,autostart_file)
+            open(autostart_file,'a').write("\nHidden=true");
+
+    def is_desktopfile_non_active(self, full_filename):
+        if os.path.exists(full_filename):
+            with open(full_filename,'r') as txt:
+                for l in txt:
+                    l=l.replace(' ','').replace("\t",'').lower()
+                    if l.find('#')!=-1:
+                        if l.find('#')>2:
+                            l=l[:find('#')-1]
+                        else:
+                            continue
+                    if l.find('hidden=true')!=-1 :
+                        return True
+                    if l.find('notshowin')!=-1 and \
+                       ( l.find('=mate')!=-1 or l.find(';mate')!=-1 ):
+                        return True
+                    if l.find('onlyshowin')!=-1 and len(l)>12:
+                        if l.find('=mate')!=-1 or l.find(';mate')!=-1:
+                            return True
+        else:
+            print("file not found to check: "+full_filename)
+            return True
+        return False
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
