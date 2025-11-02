@@ -328,19 +328,19 @@ class MateTweak:
         if os.path.exists(full_filename):
             with open(full_filename,'r') as txt:
                 for l in txt:
-                    l=l.replace(' ','').replace("\t",'').lower()
+                    l=l.replace(' ','').replace("\t",'')
                     if l.find('#')!=-1:
                         if l.find('#')>2:
                             l=l[:find('#')-1]
                         else:
                             continue
-                    if l.find('hidden=true')!=-1 :
+                    if l.find('Hidden=true')!=-1 :
                         return True
-                    if l.find('notshowin')!=-1 and \
-                       ( l.find('=mate')!=-1 or l.find(';mate')!=-1 ):
+                    if l.find('NotShowIn')!=-1 and \
+                       ( l.find('=MATE')!=-1 or l.find(';MATE')!=-1 ):
                         return True
-                    if l.find('onlyshowin')!=-1 and len(l)>12:
-                        if l.find('=mate')==-1 and l.find(';mate')==-1:
+                    if l.find('OnlyShowIn')!=-1 and len(l)>12:
+                        if l.find('=MATE')==-1 and l.find(';MATE')==-1:
                             return True
         else:
             print("file not found to check: "+full_filename)
