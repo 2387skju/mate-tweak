@@ -1145,7 +1145,6 @@ class MateTweak:
         self.mate_menu_available = False
         self.maximus_available = False
         self.mint_menu_available = False
-        self.volume_applet_enabled = False  #outdated?
         self.brisk_menu_available = False
         self.appmenu_applet_available = False
 
@@ -1178,14 +1177,6 @@ class MateTweak:
 
         if os.path.exists('/usr/lib/linuxmint/mintMenu/mintMenu.py'):
             self.mint_menu_available = True
-
-        # this part is outdated:
-        #  - variable self.volume_applet_enabled is not in use anywhere
-        #  - this part should upgrade: added also the mate-volume-control-status-icon.desktop ?
-        config_dir = GLib.get_user_config_dir()
-        if os.path.exists('/etc/xdg/autostart/mate-volume-control-applet.desktop') or \
-           os.path.exists(os.path.join(config_dir, 'autostart/') + 'mate-volume-control-applet.desktop'):
-            self.volume_applet_enabled = True
 
 
     def update_window_controls(self):
