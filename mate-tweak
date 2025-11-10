@@ -71,25 +71,6 @@ Categories=GNOME;GTK;System;Utility;TerminalEmulator;
 X-GNOME-Autostart-enabled=true
 X-MATE-Autostart-enabled=true"""
 
-__APPLET_SOUND_STATUS_ICON__ = """[Desktop Entry]
-Name=Volume Control
-Comment=Show desktop volume control
-Icon=multimedia-volume-control
-Exec=mate-volume-control-status-icon
-Terminal=false
-Type=Application
-Categories=AudioVideo;Mixer;Settings;HardwareSettings;
-Keywords=MATE;volume;control;mixer;settings;sound;
-NoDisplay=true
-OnlyShowIn=MATE;
-X-MATE-Bugzilla-Bugzilla=MATE
-X-MATE-Bugzilla-Product=mate-media
-X-MATE-Bugzilla-Component=mate-volume-control
-# See http://bugzilla.gnome.org/show_bug.cgi?id=568320
-#X-MATE-Autostart-Phase=Panel
-X-MATE-Autostart-Notify=true
-"""
-
 __TRADITIONAL_BUTTONS__ = ":minimize,maximize,close"
 __CONTEMPORARY_BUTTONS__ = "close,minimize,maximize:"
 __MENU_TRADITIONAL_BUTTONS__ = "menu:minimize,maximize,close"
@@ -295,12 +276,29 @@ class MateTweak:
 
     def create_autostart(self, filename, content):
         # Create a local autostart only if it is missing from the system path.
-        if not os.path.exists(os.path.join('/','usr','share','mate','autostart',filename)):
+        if not os.path.exists(os.path.join('/','usr','share','mate','autostart',filename)) and \
+           not os.path.exists(os.path.join('/','etc','xdg','autostart',filename)):
             config_dir = GLib.get_user_config_dir()
             self.mkdir_p(os.path.join(config_dir, 'autostart/'))
             if not os.path.exists(os.path.join(config_dir, 'autostart',filename)):
                 with open(os.path.join(config_dir, 'autostart', filename),'w') as autostart:
                     autostart.write(content)
+
+    def enable_autostart(self, filename):
+        # enable autostart by remove local .desktop with disabled state (e.g. hidden)
+        # This assume that the a working systemwide starter exists
+        config_dir = GLib.get_user_config_dir()
+        autostart_file = os.path.join(config_dir, 'autostart', filename)
+        if os.path.exists(autostart_file):
+            if self.is_desktopfile_non_active(autostart_file):
+                os.remove(autostart_file)
+            else:
+                return
+        autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if os.path.exists(autostart_file_systemwide) and not self.is_desktopfile_non_active(autostart_file_systemwide):
+            return
+        if not os.path.exists(autostart_file_systemwide) or self.is_desktopfile_non_active(autostart_file_systemwide):
+            print("Error: Autostart defect or non working. Please restore this file from origin package: "+autostart_file_systemwide+" (it seems missing or inactive)")
 
     def remove_autostart(self, filename):
         config_dir = GLib.get_user_config_dir()
@@ -312,6 +310,43 @@ class MateTweak:
         if os.path.exists(os.path.join('/', 'etc', 'xdg', 'autostart',filename)):
             mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
             subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+
+    def disable_autostart(self, filename):
+        # disable autostart by local .desktop with disabled state (e.g. hidden)
+        config_dir = GLib.get_user_config_dir()
+        autostart_file = os.path.join(config_dir, 'autostart', filename)
+        if os.path.exists(autostart_file):
+            if self.is_desktopfile_non_active(autostart_file):
+                return
+            else:
+                os.remove(autostart_file)
+        autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if os.path.exists(autostart_file_systemwide) and not self.is_desktopfile_non_active(autostart_file_systemwide):
+            shutil.copyfile(autostart_file_systemwide,autostart_file)
+            open(autostart_file,'a').write("\nHidden=true");
+
+    def is_desktopfile_non_active(self, full_filename):
+        if os.path.exists(full_filename):
+            with open(full_filename,'r') as txt:
+                for l in txt:
+                    l=l.replace(' ','').replace("\t",'')
+                    if l.find('#')!=-1:
+                        if l.find('#')>2:
+                            l=l[:find('#')-1]
+                        else:
+                            continue
+                    if l.find('Hidden=true')!=-1 :
+                        return True
+                    if l.find('NotShowIn')!=-1 and \
+                       ( l.find('=MATE')!=-1 or l.find(';MATE')!=-1 ):
+                        return True
+                    if l.find('OnlyShowIn')!=-1 and len(l)>12:
+                        if l.find('=MATE')==-1 and l.find(';MATE')==-1:
+                            return True
+        else:
+            print("file not found to check: "+full_filename)
+            return True
+        return False
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
@@ -556,7 +591,7 @@ class MateTweak:
         """
         self.kill_process('mate-volume-control-status-icon')
         self.kill_process('mate-volume-control-applet')
-        self.remove_autostart('mate-volume-control-status-icon.desktop')
+        self.disable_autostart('mate-volume-control-status-icon.desktop')
 
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'never')
@@ -575,7 +610,7 @@ class MateTweak:
         """
         if self.find_on_path('mate-volume-control-status-icon'):
            pid = subprocess.Popen(['mate-volume-control-status-icon'], stdout=DEVNULL, stderr=DEVNULL).pid
-        self.create_autostart('mate-volume-control-status-icon.desktop',__APPLET_SOUND_STATUS_ICON__)
+        self.enable_autostart('mate-volume-control-status-icon.desktop')
 
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'present')
