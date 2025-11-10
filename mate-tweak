@@ -1012,7 +1012,13 @@ class MateTweak:
             panel_layout = value
             title = _('Change the layout?')
             text = _('<b>Changing the layout will completely replace and reset the current configuration!</b>\n\nAre you sure you want to replace this layout and potentially lose any customizations you might have made?')
-            if not self.confirm_dialog(title, text):
+            title_netbook = _('Change to layout Netbook? (warning)')
+            text_netbook = _('<b>Maybe you must relogin!</b>\n\nChanging to Layout netbook may fail in some situations.\n\nEffects:\n- You can not reopen your already running windows.\n- The window picker will not work, or not work correctly.\n\nIn that case:\n- Please Logout and Login again.\n- Alternative: start Mate-Tweak a second time and change to another Layout.')
+            if not self.confirm_dialog(title, text) or \
+               ( \
+                 (panel_layout=='netbook' or panel_layout=='netbook-no-indicators') \
+                  and not self.confirm_dialog(title_netbook, text_netbook) \
+                ):
                 # Revert the change that the signal already caught
                 source = Gio.SettingsSchemaSource.get_default()
                 if source.lookup('org.mate.panel', True) != None:
