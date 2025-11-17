@@ -247,6 +247,26 @@ msgstr "HiDPI"
 msgid "Select a window scaling factor."
 msgstr "选择一个窗口缩放因子。"
 
+#: #: ../mate-tweak:
+msgid "Open the Picom-Conf Config file to edit manual"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Restart Picom"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Restart and reload the config-file of picom"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Reset to default preset"
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Reset the current Picom-Conf configuration to the default presets, which were shipped by Mate-Tweak"
+msgstr ""
+
 #: ../mate-tweak:1630
 msgid "Auto-detect"
 msgstr "自动检测"
@@ -499,3 +519,7 @@ msgstr "仅文本"
 
 #~ msgid "Traditional"
 #~ msgstr "传统"
+
+#: ../mate-tweak:
+msgid "Your custom Picom configuration has been reset to Mate-Tweak-preset."
+msgstr ""
