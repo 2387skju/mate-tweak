@@ -309,8 +309,63 @@ class MateTweak:
             os.remove(autostart_file)
 
         # Make sure any system desktop files are also removed
-        mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
-        subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+        if os.path.exists(os.path.join('/', 'etc', 'xdg', 'autostart',filename)):
+            mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
+            subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+
+    def disable_autostart(self, filename, comment_add=""):
+        # disable autostart by local .desktop with disabled state (e.g. hidden)
+        config_dir = GLib.get_user_config_dir()
+        autostart_file = os.path.join(config_dir, 'autostart', filename)
+        if os.path.exists(autostart_file):
+            if self.is_desktopfile_non_active(autostart_file):
+                return
+            else:
+                os.remove(autostart_file)
+        autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if os.path.exists(autostart_file_systemwide) and not self.is_desktopfile_non_active(autostart_file_systemwide):
+            # alternativ simplified version (no Comment added):
+              #shutil.copyfile(autostart_file_systemwide,autostart_file)
+              #open(autostart_file,'a').write(r"\nHidden=true")
+            # copy file and edit: add Comment, add Hidden (=disabled):
+            comment="MateTweak disabled the autostart "+comment_add+"; "
+            comment_written = False;
+            input_f = open(autostart_file_systemwide, "r")
+            output_f = open(autostart_file, "w")
+            for line in input_f:
+                if len(line)>8 and line[0:7]=="Comment" :
+                    line=line.replace('=','='+comment,1)
+                    comment_written = True
+                output_f.write(line+"")
+                print(line)
+            input_f.close()
+            if not comment_written :
+                output_f.write("Comment="+comment)
+            output_f.write("Hidden=true");
+            output_f.close()
+
+    def is_desktopfile_non_active(self, full_filename):
+        if os.path.exists(full_filename):
+            with open(full_filename,'r') as txt:
+                for l in txt:
+                    l=l.replace(' ','').replace("\t",'')
+                    if l.find('#')!=-1:
+                        if l.find('#')>2:
+                            l=l[:find('#')-1]
+                        else:
+                            continue
+                    if l.find('Hidden=true')!=-1 :
+                        return True
+                    if l.find('NotShowIn')!=-1 and \
+                       ( l.find('=MATE')!=-1 or l.find(';MATE')!=-1 ):
+                        return True
+                    if l.find('OnlyShowIn')!=-1 and len(l)>12:
+                        if l.find('=MATE')==-1 and l.find(';MATE')==-1:
+                            return True
+        else:
+            print("file not found to check: "+full_filename)
+            return True
+        return False
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
@@ -391,6 +446,12 @@ class MateTweak:
                 self.set_dconf_value('/org/compiz/profiles/mate/plugins/core/hsize', str(num_workspaces))
                 self.set_dconf_value('/org/compiz/profiles/mate/plugins/core/vsize', '1')
             print('Set ' + str(num_workspaces) + ' workspaces for ' + new_wm)
+
+        # Prevent autostart picom
+        # Situations: in case ~/.config/picom.conf ; or in older versions (picom < v12 , before commit: May 23 05:53:43 2024)
+        if new_wm == 'marco-no-composite' or new_wm == 'compiz':
+            self.disable_autostart('picom.desktop', ' ( reason: parallel running compiz has problems )') # Remove autostart picom
+            self.kill_process('picom') #maybe old autostart progress
 
         # Make sure Compiz use the same theme as Marco to
         # prevent theme/xcursor changes when switching themes.
@@ -1802,3 +1863,4 @@ if __name__ == "__main__":
     else:
         MateTweak()
         Gtk.main()
+
