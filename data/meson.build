@@ -98,6 +98,6 @@ install_data(org_mate_mate_tweak_policy,
 
 install_man('mate-tweak.1')
 install_data('mate-tweak.ui',
-    install_dir: join_paths(libdir, meson.project_name())
+    install_dir: join_paths(datadir, meson.project_name())
 )
 
