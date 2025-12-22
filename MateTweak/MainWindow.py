@@ -867,12 +867,15 @@ class MateTweak:
 
         # If we have a custom panel layout just replace the dconf dump.
         if os.path.exists(os.path.join(config.datadir, 'mate-panel', 'layouts', new_layout + '.panel')):
+            history_last_run = self.get_dconf_value('/org/mate/panel/general/history-mate-run')
             # Reset panel configuration to defaults.
             self.reset_dconf_path('/org/mate/panel/objects/')
             self.reset_dconf_path('/org/mate/panel/toplevels/')
             print('Loading additional panel configuration for ' + new_layout)
             cmd = 'dconf load /org/mate/panel/ < '+config.datadir+'/mate-panel/layouts/' + new_layout + '.panel'
             subprocess.call(cmd, shell=True, stdout=DEVNULL, stderr=DEVNULL)
+            self.reset_dconf_path('/org/mate/panel/general/history-mate-run')
+            self.set_dconf_value('/org/mate/panel/general/history-mate-run', history_last_run) #restore
         else:
             # Set the new layout
             subprocess.call(['mate-panel', '--reset', '--layout', new_layout], stdout=DEVNULL, stderr=DEVNULL)
