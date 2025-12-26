@@ -22,6 +22,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../mate-tweak:
+msgid "confirm window scaling factor"
+msgstr "bestätige Fensterskalierung"
+
+#: ../mate-tweak:
+msgid "Do you want to keep this new setting?"
+msgstr "Möchten Sie diese Einstellung beibehalten?"
+
+#: ../mate-tweak:
+msgid "Tip: Move windows by press and hold:"
+msgstr "Tipp: Bewegen von Fenstern über drücken und halten von:"
+
+#: ../mate-tweak:
+msgid "ALT + Mouse-Click (left)"
+msgstr "ALT + Maus-Klick (links)"
+
 #: ../mate-tweak:1207
 msgid "Right"
 msgstr "Rechts"
