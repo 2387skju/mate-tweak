@@ -1079,6 +1079,31 @@ class MateTweak:
             time.sleep(0.5)
             if not self.process_running('mate-panel'):
                 self.reload_panel()
+            # May offer a fallback at low resolution displays
+            if self.builder.get_object("combobox_hidpi_scaling").get_active() > 1 :
+                title = _('confirm window scaling factor')
+                text = _('Do you want to keep this new setting?')+"\n("+_("Tip: Move windows by press and hold:")+" "+_("ALT + Mouse-Click (left)")+")"
+                scale_factor_new = value
+                screen = self.window.get_screen()
+                monitor_id = 0 # will only checking the first monitor in newer version of gdk (v4)
+                if hasattr(screen, 'get_active_window') and callable(screen.get_active_window): # get_active_window is deprecated since version 3.22
+                    if(screen.get_active_window()!=None): # with time.sleep(5) before, you got here None
+                        monitor_id = screen.get_monitor_at_window(screen.get_active_window())
+                # Gdk.Display has still the old values
+                resolution_old = Gdk.Display.get_default().get_monitor( monitor_id ).get_geometry()
+                scale_factor_old__monitor = Gdk.Display.get_default().get_monitor( monitor_id ).get_scale_factor()
+                resolution_new_height = resolution_old.height * scale_factor_old__monitor
+                if(scale_factor_new>0): resolution_new_height = resolution_old.height/scale_factor_new
+                resolution_new_width = resolution_old.width * scale_factor_old__monitor
+                if(scale_factor_new>0): resolution_new_width = resolution_old.width/scale_factor_new
+                if resolution_new_height < self.window.get_size()[0] or resolution_new_width < self.window.get_size()[1] :
+                    if not self.confirm_dialog(title, text):
+                        # change scale factor to auto-detect (=0)
+                        self.set_int(schema, None, key, 0)
+                        self.builder.get_object("combobox_hidpi_scaling").set_active(0)
+                        time.sleep(0.5)
+                        if not self.process_running('mate-panel'):
+                            self.reload_panel()
 
         elif schema == "org.mate.panel" and key == "default-layout":
             panel_layout = value
