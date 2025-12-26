@@ -31,6 +31,22 @@ msgstr "Fensterverwaltung ersetzt"
 msgid "Your window manager has been replaced with "
 msgstr "Ihre Fensterverwaltung wurde ersetzt mit "
 
+#: ../mate-tweak:
+msgid "confirm window scaling factor"
+msgstr "bestätige Fensterskalierung"
+
+#: ../mate-tweak:
+msgid "Do you want to keep this new setting?"
+msgstr "Möchten Sie diese Einstellung beibehalten?"
+
+#: ../mate-tweak:
+msgid "Tip: Move windows by press and hold:"
+msgstr "Tipp: Bewegen von Fenstern über drücken und halten von:"
+
+#: ../mate-tweak:
+msgid "ALT + Mouse-Click (left)"
+msgstr "ALT + Maus-Klick (links)"
+
 #: mate-tweak:
 msgid "Change the layout?"
 msgstr "Wechseln des Layouts?"
