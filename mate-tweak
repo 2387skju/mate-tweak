@@ -313,7 +313,7 @@ class MateTweak:
             mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
             subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
 
-    def disable_autostart(self, filename):
+    def disable_autostart(self, filename, comment_add=""):
         # disable autostart by local .desktop with disabled state (e.g. hidden)
         config_dir = GLib.get_user_config_dir()
         autostart_file = os.path.join(config_dir, 'autostart', filename)
@@ -324,8 +324,25 @@ class MateTweak:
                 os.remove(autostart_file)
         autostart_file_systemwide = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
         if os.path.exists(autostart_file_systemwide) and not self.is_desktopfile_non_active(autostart_file_systemwide):
-            shutil.copyfile(autostart_file_systemwide,autostart_file)
-            open(autostart_file,'a').write("\nHidden=true");
+            # alternativ simplified version (no Comment added):
+              #shutil.copyfile(autostart_file_systemwide,autostart_file)
+              #open(autostart_file,'a').write(r"\nHidden=true")
+            # copy file and edit: add Comment, add Hidden (=disabled):
+            comment="MateTweak disabled the autostart "+comment_add+"; "
+            comment_written = False;
+            input_f = open(autostart_file_systemwide, "r")
+            output_f = open(autostart_file, "w")
+            for line in input_f:
+                if len(line)>8 and line[0:7]=="Comment" :
+                    line=line.replace('=','='+comment,1)
+                    comment_written = True
+                output_f.write(line+"")
+                print(line)
+            input_f.close()
+            if not comment_written :
+                output_f.write("Comment="+comment)
+            output_f.write("Hidden=true");
+            output_f.close()
 
     def is_desktopfile_non_active(self, full_filename):
         if os.path.exists(full_filename):
@@ -433,7 +450,7 @@ class MateTweak:
         # Prevent autostart picom
         # Situations: in case ~/.config/picom.conf ; or in older versions (picom < v12 , before commit: May 23 05:53:43 2024)
         if new_wm == 'marco-no-composite' or new_wm == 'compiz':
-            self.disable_autostart('picom.desktop') # Remove autostart picom
+            self.disable_autostart('picom.desktop', ' ( reason: parallel running compiz has problems )') # Remove autostart picom
             self.kill_process('picom') #maybe old autostart progress
 
         # Make sure Compiz use the same theme as Marco to
