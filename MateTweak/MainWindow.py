@@ -385,7 +385,7 @@ class MateTweak:
                 self.current_wm = self.get_string('org.mate.session.required-components', None, 'windowmanager')
             elif not composite_enabled:
                 self.current_wm += '-no-composite'
-        elif ('Compiz' in current_wm):
+        elif ('compiz' in current_wm.lower()):
             self.current_wm = current_wm.lower()
         else:
             self.current_wm = 'Unknown'
