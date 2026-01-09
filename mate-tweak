@@ -616,7 +616,7 @@ class MateTweak:
 
     def enable_pulldown_terminal(self):
         if self.pulldown_terminal == 'tilda':
-            self.create_autostart(self.pulldown_terminal + '.desktop', __TILDA__)
+            self.enable_autostart(self.pulldown_terminal + '.desktop', __TILDA__)
 
             # Launch tilda, if it is not already enabled.
             if not self.pulldown_terminal_enabled:
@@ -625,7 +625,7 @@ class MateTweak:
 
     def disable_pulldown_terminal(self):
         if self.pulldown_terminal == 'tilda':
-            self.remove_autostart(self.pulldown_terminal + '.desktop')
+            self.disable_autostart(self.pulldown_terminal + '.desktop')
 
         if self.process_running(self.pulldown_terminal):
             self.kill_process(self.pulldown_terminal)
@@ -638,7 +638,7 @@ class MateTweak:
         or hiding.
         """
         self.kill_process('mate-volume-control-applet')
-        self.remove_autostart('mate-volume-control-applet.desktop')
+        self.disable_autostart('mate-volume-control-applet.desktop')
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'never')
             self.set_bool('org.mate.power-manager', None, 'notify-low-capacity', False)
@@ -654,7 +654,7 @@ class MateTweak:
         """
         pid = subprocess.Popen(['mate-volume-control-applet'], stdout=DEVNULL, stderr=DEVNULL).pid
         self.remove_autostart('mate-volume-control-applet.desktop')
-        self.create_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
+        self.enable_autostart('mate-volume-control-applet.desktop', __APPLET_SOUND__)
         if os.path.exists('/usr/libexec/ayatana-indicator-power/ayatana-indicator-power-service'):
             self.set_string('org.mate.power-manager', None, 'icon-policy', 'present')
             self.set_bool('org.mate.power-manager', None, 'notify-low-capacity', True)
