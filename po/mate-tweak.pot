@@ -17,12 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../mate-tweak:
+msgid "This autostart was disabled by Mate-Tweak."
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Reason: parallel running compiz has problems"
+msgstr ""
+
 #: mate-tweak:
 msgid "Window Manager Replaced"
 msgstr ""
 
 #: mate-tweak:
 msgid "Your window manager has been replaced with "
+msgstr ""
+
+#: ../mate-tweak:
+msgid "Reason: ayatana-indicator has already a volume controller"
 msgstr ""
 
 #: ../mate-tweak:

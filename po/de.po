@@ -23,6 +23,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../mate-tweak:
+msgid "This autostart was disabled by Mate-Tweak."
+msgstr "Dieser Autostart wurde deaktiviert von Mate-Tweak."
+
+#: ../mate-tweak:
+msgid "Reason: parallel running compiz has problems"
+msgstr "Grund: wenn es gleichzeitig mit compiz läuft, gibt es probleme"
+
 #: mate-tweak:
 msgid "Window Manager Replaced"
 msgstr "Fensterverwaltung ersetzt"
@@ -30,6 +38,10 @@ msgstr "Fensterverwaltung ersetzt"
 #: mate-tweak:
 msgid "Your window manager has been replaced with "
 msgstr "Ihre Fensterverwaltung wurde ersetzt mit "
+
+#: ../mate-tweak:
+msgid "Reason: ayatana-indicator has already a volume controller"
+msgstr "Grund: ayatana-indicator hat bereits ein Lautstärke Regler"
 
 #: ../mate-tweak:
 msgid "confirm window scaling factor"
