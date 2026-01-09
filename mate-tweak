@@ -312,6 +312,90 @@ class MateTweak:
         mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
         subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
 
+    def enable_autostart(self, filename, autostart_content=""):
+        # Enable autostart by remove local disabled .desktop file
+        config_dir = GLib.get_user_config_dir()
+        local_autostart_file = os.path.join(config_dir, 'autostart', filename)
+        system_autostart_file = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if self.exists_and_enabled_desktopfile(system_autostart_file):
+            if self.exists_and_disabled_desktopfile(local_autostart_file):
+                    os.remove(local_autostart_file) # User changed state by hand
+                    return
+        else : # User deleted the system-wide autostart by hand
+            if self.exists_and_enabled_desktopfile(local_autostart_file):
+                return # nothing to do
+            else:
+                if autostart_content=="":
+                    print("Error: failed to create Autostart (missing content) "+filename)
+                    return
+                with open(local_autostart_file,'w') as out_file:
+                    out_file.write(autostart_content)
+
+    def disable_autostart(self, filename, comment_add=""):
+        # Disable autostart by local overwrite .desktop file
+        config_dir = GLib.get_user_config_dir()
+        local_autostart_file = os.path.join(config_dir, 'autostart', filename)
+        system_autostart_file = os.path.join('/', 'etc', 'xdg', 'autostart', filename)
+        if self.exists_and_disabled_desktopfile(local_autostart_file):
+           return # nothing to do
+        if self.exists_and_enabled_desktopfile(local_autostart_file):
+            os.remove(local_autostart_file)
+        if self.exists_and_enabled_desktopfile(system_autostart_file):
+            self.copy_system_autostart_to_local_and_disable(system_autostart_file, local_autostart_file, comment_add)
+
+    def copy_system_autostart_to_local_and_disable(self, in_filename, out_filename, comment_add=""):
+        # copy a .desktop file and set as disabled (= will not autostart ) and add addational text to comment
+        comment_add = "(" + _("The autostart was disabled by Mate-Tweak.") + " "+comment_add + ") "
+        input_f = open(in_filename, "r")
+        output_f = open(out_filename, "w")
+        for line in input_f:
+            if len(line) > 8 and line[0:7] == "Comment":
+                line = line.replace('=', '='+comment_add, 1)
+            if len(line) > 8 and line[0:6] == "Hidden=":
+                continue
+            output_f.write(line)
+        input_f.close()
+        output_f.write("Hidden=true");
+        output_f.write("# created by MateTweak: This overwrites the system-wide autostart.")
+        output_f.close()
+
+    def disabled_desktopfile(self, full_filename):
+        # check if .desktop file is disabled (= will not autostart )
+        if os.path.exists(full_filename):
+            with open(full_filename, 'r') as txt:
+                for line in txt:
+                    line = line.replace(' ', '').replace("\t", '')
+                    if line.find('#') != -1:
+                        if line.find('#') > 2:
+                            line = line[:line.find('#')-1]
+                        else:
+                            continue
+                    if line.find('Hidden=true') != -1:
+                        return True
+                    if line.find('NotShowIn') != -1:
+                        if line.find('=MATE') != -1 or line.find(';MATE') !=- 1:
+                            return True
+                    if line.find('OnlyShowIn') != -1 and len(line) > 12:
+                        if line.find('=MATE') == -1 and line.find(';MATE') ==- 1:
+                            return True
+        else:
+            print("file not found to check: " + full_filename)
+            return True
+        return False
+
+    def enabled_desktopfile(self, full_filename):
+        return not self.disabled_desktopfile(full_filename)
+
+    def exists_and_enabled_desktopfile(self, full_filename):
+        if(os.path.exists(full_filename)):
+            return self.enabled_desktopfile(full_filename)
+        return False
+
+    def exists_and_disabled_desktopfile(self, full_filename):
+        if(os.path.exists(full_filename)):
+            return self.disabled_desktopfile(full_filename)
+        return False
+
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
         current_wm = GdkX11.X11Screen.get_window_manager_name(screen)
