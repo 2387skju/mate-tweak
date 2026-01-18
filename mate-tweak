@@ -310,7 +310,8 @@ class MateTweak:
 
         # Make sure any system desktop files are also removed
         mate_tweak_helper = os.path.join('/','usr', 'lib', 'mate-tweak', 'mate-tweak-helper')
-        subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
+        if os.path.exists(os.path.join('/', 'etc', 'xdg', 'autostart',filename)):
+            subprocess.call(['pkexec', mate_tweak_helper, 'autostop', filename], stdout=DEVNULL, stderr=DEVNULL)
 
     def check_wm_features(self):
         screen = Gdk.Screen.get_default()
