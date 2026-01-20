@@ -35,6 +35,10 @@ msgstr "deaktiviert von Mate-Tweak."
 msgid "Reason: parallel running compiz has problems"
 msgstr "Grund: wenn es gleichzeitig mit compiz läuft, gibt es probleme"
 
+#: ../mate-tweak:
+msgid "Reason: parallel running will not disable composite."
+msgstr "Grund: wenn es gleichzeitig läuft, kann composite nicht ausgeschaltet werden."
+
 #: mate-tweak:
 msgid "Window Manager Replaced"
 msgstr "Fensterverwaltung ersetzt"

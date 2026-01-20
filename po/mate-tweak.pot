@@ -29,6 +29,10 @@ msgstr ""
 msgid "Reason: parallel running compiz has problems"
 msgstr ""
 
+#: ../mate-tweak:
+msgid "Reason: parallel running will not disable composite."
+msgstr ""
+
 #: mate-tweak:
 msgid "Window Manager Replaced"
 msgstr ""
