@@ -1660,9 +1660,27 @@ class MateTweak:
 
         # Panel layouts
         self.make_list_of_panel_layouts()
+        self.init_panel_features()
+        sugg = []
+        if not self.indicators_available:
+            sugg += ["ayatana-indicator-*", "mate-indicator-applet"]
+        if not self.mate_menu_available:
+            sugg += ["mate-menu"]
+        if not self.window_buttons_applet_available:
+            sugg += ["mate-window-buttons-applet"]
+        if not self.brisk_menu_available:
+            sugg += ["mate-applet-brisk-menu"]
+        if not self.appmenu_applet_available:
+            sugg += ["mate-applet-appmenu"]
+        if not self.maximus_available:
+            sugg += ["mate-netbook"]
         self.builder.get_object("caption_panels").set_markup("<small>" + _("Select a panel layout to change the user interface.") + "</small>")
         self.builder.get_object("combobox_panels").set_tooltip_text(_("Select a panel layout."))
-        self.init_panel_features()
+        if len(sugg) > 0:
+            self.builder.get_object("caption_panels_2").set_markup("<small>" + _("Do you want more layout-styles?: Install the suggested packages") + "\n( " + " ".join(sugg) + " )" + "</small>")
+            self.builder.get_object("caption_panels_2").set_selectable(True)
+        else:
+            self.builder.get_object("caption_panels_2").hide()
 
         # Panel icon sizes
         panel_icon_sizes = Gtk.ListStore(str, str)
