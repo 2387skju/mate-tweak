@@ -383,6 +383,10 @@ msgstr ""
 msgid "Select a panel layout to change the user interface."
 msgstr ""
 
+#: ../mate-tweak:
+msgid "Do you want more layout-styles?: Install the suggested packages"
+msgstr ""
+
 #: ../mate-tweak:1709
 msgid "Select a panel layout."
 msgstr ""

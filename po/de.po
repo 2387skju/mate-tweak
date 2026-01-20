@@ -416,6 +416,10 @@ msgstr ""
 "Bitte eine Leistenanordnung auswählen, um die Benutzerschnittstelle zu "
 "ändern."
 
+#: ../mate-tweak:
+msgid "Do you want more layout-styles?: Install the suggested packages"
+msgstr "Möchten Sie weitere Layouts-Styles?: Installiere die vorgeschlagenen Pakete"
+
 #: ../mate-tweak:1709
 msgid "Select a panel layout."
 msgstr "Leistenanordnung auswählen."
