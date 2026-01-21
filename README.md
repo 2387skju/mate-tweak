@@ -1,10 +1,18 @@
-My Commits here:
- - [x] is merges : is a Pull-Request
- - [x]* is merged: is not a Pull-Requests (at the moment)
- - [] is not merges: is a Pull-Request
+# My Commits / Pull-Request merged together.
 
-- [x]* promote suggested packages, to get more layouts (e.g. ayatana-indicator, if not installed) (*=No pull-Request at the moment)
-- [x]* disable autostart of picom : ( follow up change of: picom shouldn't run, parallel with compiz or no-composite (bugfix #97) )   (*=No pull-Request at the moment)
+
+### You want to test?:
+ Just copy the content of the file [`mate-tweak`](https://raw.githubusercontent.com/2387skju/mate-tweak/refs/heads/master/mate-tweak) to your system-file /bin/mate-tweak.
+ Example: with text-Editor: `sudo pluma /bin/mate-tweak`
+
+### Legende:
+- [x] is a Pull-Request: is merged here
+- [ ] is a Pull-Request: is not merged
+-  is not a Pull-Requests (at the moment): is merged here
+
+
+### Commits:
+-  disable autostart of picom : ( follow up change of: picom shouldn't run, parallel with compiz or no-composite (bugfix #97) )
 - [x] [rework: autostart managment: disable autostart by overwrite with a local file, instead of delete the system-wide](https://github.com/ubuntu-mate/mate-tweak/pull/114)
 - [x] [offer fallback from HiDPI on low resolution displays](https://github.com/ubuntu-mate/mate-tweak/pull/113)
 - [x] [minimal changes:](https://github.com/ubuntu-mate/mate-tweak/pull/112) 
@@ -20,7 +28,7 @@ My Commits here:
 - [x] [picom shouldn't run, parallel with compiz or no-composite (also bugfix #97)](https://github.com/ubuntu-mate/mate-tweak/pull/108)
 - [x] [mark default windowmanager](https://github.com/ubuntu-mate/mate-tweak/pull/107)
 - [x] [remove deprecated window-manager xr_glx_hybrid](https://github.com/ubuntu-mate/mate-tweak/pull/106)
-- [x] [l10n: added missing strings ; update DE](https://github.com/ubuntu-mate/mate-tweak/pull/104)
+- [x] [translation: added missing strings ; update DE](https://github.com/ubuntu-mate/mate-tweak/pull/104)
 - [ ] ~[add post_uninstall.sh: reset window-manager to default \[low Prio\]](https://github.com/ubuntu-mate/mate-tweak/pull/103)~ (I prefer other solution)
 - [x] [user-info at panel save: no custom launcher will be saved, list them](https://github.com/ubuntu-mate/mate-tweak/pull/102)
 - [ ] [change build system to meson](https://github.com/ubuntu-mate/mate-tweak/pull/101)  => look in this merged branch [master_with_meson__newer](https://github.com/2387skju/mate-tweak/tree/master_with_meson__newer)
