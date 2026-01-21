@@ -1,12 +1,15 @@
-Version with meson-build system.
+My Commits / Pull-Request merged together.
 
-My Commits here:
- - [x] is merges : is a Pull-Request
- - [x]* is merged: is not a Pull-Requests (at the moment)
- - [] is not merges: is a Pull-Request
+Legende:
+- [x] is merged : is a Pull-Request
+- [x] * is merged: is not a Pull-Requests (at the moment)
+- [ ] is not merged: is a Pull-Request
 
-- [x]* promote suggested packages, to get more layouts (e.g. ayatana-indicator, if not installed) (*=No pull-Request at the moment)
-- [x]* disable autostart of picom : ( follow up change of: picom shouldn't run, parallel with compiz or no-composite (bugfix #97) )   (*=No pull-Request at the moment)
+Commits:
+- [x] * promote suggested packages, to get more layouts (e.g. ayatana-indicator, if not installed) 
+(*=No pull-Request at the moment)
+- [x] * disable autostart of picom : ( follow up change of: picom shouldn't run, parallel with compiz or no-composite (bugfix #97) )  
+(*=No pull-Request at the moment)
 - [x] [rework: autostart managment: disable autostart by overwrite with a local file, instead of delete the system-wide](https://github.com/ubuntu-mate/mate-tweak/pull/114)
 - [x] [offer fallback from HiDPI on low resolution displays](https://github.com/ubuntu-mate/mate-tweak/pull/113)
 - [x] [minimal changes:](https://github.com/ubuntu-mate/mate-tweak/pull/112) 
