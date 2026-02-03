@@ -7,10 +7,11 @@ i18n = import('i18n')
 python = import('python')
 py3 = find_program('python3', required:true)
 
-#this dependency ist just blind copied from software "mozo"
-# i think it can be deleted
-# if you got an error, with this line: install sudo apt install python-gi-dev
-# dependency('pygobject-3.0')
+# The dependency are optional (= not needed to build ).
+# Otherwise install it: example: sudo apt install python-gi-dev libgtk-3-dev libnotify-dev
+dependency('pygobject-3.0', required: false)
+dependency('gtk+-3.0', required: false)
+dependency('libnotify', required: false)
 
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
