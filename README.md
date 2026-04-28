@@ -1,9 +1,24 @@
+Version with meson-build system.
 # My Commits / Pull-Request merged together.
 
 
 ### You want to test?:
- Just copy the content of the file [`mate-tweak`](https://raw.githubusercontent.com/2387skju/mate-tweak/refs/heads/master/mate-tweak) to your system-file /bin/mate-tweak.
- Example: with text-Editor: `sudo pluma /bin/mate-tweak`
+~~ Just copy the content of the file [`mate-tweak`](https://raw.githubusercontent.com/2387skju/mate-tweak/refs/heads/master/mate-tweak) to your system-file /bin/mate-tweak.
+ Example: with text-Editor: `sudo pluma /bin/mate-tweak` ~~
+
+The meson version is different.
+Use this commands to build and install:
+
+Compile:
+-  meson build --libdir=/usr/lib/ --prefix=/usr/ --sysconfdir=/etc
+-  cd build
+-  meson compile
+-  sudo meson install
+
+Remove:
+-  sudo ninja uninstall
+
+------------
 
 ### Legende:
 - [x] is a Pull-Request: is merged here
@@ -31,12 +46,14 @@
 - [x] [translation: added missing strings ; update DE](https://github.com/ubuntu-mate/mate-tweak/pull/104)
 - [ ] ~[add post_uninstall.sh: reset window-manager to default \[low Prio\]](https://github.com/ubuntu-mate/mate-tweak/pull/103)~ (I prefer other solution)
 - [x] [user-info at panel save: no custom launcher will be saved, list them](https://github.com/ubuntu-mate/mate-tweak/pull/102)
-- [ ] [change build system to meson](https://github.com/ubuntu-mate/mate-tweak/pull/101)  => look in this merged branch [master_with_meson__newer](https://github.com/2387skju/mate-tweak/tree/master_with_meson__newer)
+- [x] [change build system to meson](https://github.com/ubuntu-mate/mate-tweak/pull/101)  => without it, look in this merged branch [master](https://github.com/2387skju/mate-tweak/tree/master)
+
 
 
 This is maybe a Work in Process: Currently my Pull-Requests are not included in [Origin Repostory](https://github.com/ubuntu-mate/mate-tweak). If i found an error, i will do a git rebase and git push --force-with-lease to keep the commit history clean.
 
 ------------
+
 
 This is MATE Tweak, a fork of [mintDesktop](https://github.com/linuxmint/mintdesktop).
 
